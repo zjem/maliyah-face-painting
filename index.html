@@ -1,0 +1,1058 @@
+<!DOCTYPE html>
+<html lang="en-AU">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Maliyah's Face Painting — Colourful fun for parties &amp; events</title>
+<meta name="description" content="Maliyah's Face Painting brings bright, professional face art to birthday parties, fairs and events. Book a splash of colour for your next celebration.">
+
+<!-- Fonts -->
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fredoka:wght@500;600;700&family=Nunito:wght@400;600;700;800&display=swap" rel="stylesheet">
+
+<style>
+/* ================================================================
+   Maliyah's Face Painting
+   Palette pulled from real face-paint pots: berry, teal, sun, coral
+   on a soft blush background, with deep aubergine ink for text.
+   ================================================================ */
+
+:root {
+  --ink:    #2b1a3d;   /* deep aubergine — text */
+  --ink-soft:#5b4a6e;
+  --berry:  #e5387e;   /* hot pink / magenta */
+  --teal:   #14b8b0;
+  --sun:    #ffc23c;
+  --coral:  #ff6b4a;
+  --grape:  #7c4dff;
+  --cloud:  #fff7fb;   /* page background */
+  --petal:  #fce9f3;   /* soft surface */
+  --white:  #ffffff;
+
+  --shadow-soft: 0 14px 40px rgba(124, 77, 255, 0.14);
+  --shadow-lift: 0 22px 60px rgba(229, 56, 126, 0.22);
+
+  --radius: 22px;
+  --radius-lg: 34px;
+  --maxw: 1120px;
+
+  --font-display: "Fredoka", "Nunito", system-ui, sans-serif;
+  --font-body: "Nunito", system-ui, -apple-system, sans-serif;
+}
+
+* { box-sizing: border-box; }
+
+html { scroll-behavior: smooth; }
+
+body {
+  margin: 0;
+  font-family: var(--font-body);
+  color: var(--ink);
+  background: var(--cloud);
+  line-height: 1.6;
+  -webkit-font-smoothing: antialiased;
+  overflow-x: hidden;
+}
+
+h1, h2, h3 {
+  font-family: var(--font-display);
+  font-weight: 600;
+  line-height: 1.05;
+  margin: 0 0 .4em;
+  letter-spacing: -0.01em;
+}
+
+a { color: inherit; }
+
+img { max-width: 100%; display: block; }
+
+.wrap {
+  width: 100%;
+  max-width: var(--maxw);
+  margin-inline: auto;
+  padding-inline: clamp(20px, 5vw, 48px);
+}
+
+.sr-only {
+  position: absolute; width: 1px; height: 1px;
+  padding: 0; margin: -1px; overflow: hidden;
+  clip: rect(0,0,0,0); border: 0;
+}
+
+/* ---------- Buttons ---------- */
+.btn {
+  display: inline-flex;
+  align-items: center;
+  gap: .5em;
+  font-family: var(--font-display);
+  font-weight: 600;
+  font-size: 1.05rem;
+  padding: .85em 1.5em;
+  border-radius: 100px;
+  border: none;
+  cursor: pointer;
+  text-decoration: none;
+  transition: transform .18s ease, box-shadow .18s ease, background .18s ease;
+}
+.btn-primary {
+  background: var(--berry);
+  color: var(--white);
+  box-shadow: var(--shadow-lift);
+}
+.btn-primary:hover { transform: translateY(-3px) rotate(-1deg); }
+.btn-ghost {
+  background: var(--white);
+  color: var(--ink);
+  box-shadow: var(--shadow-soft);
+}
+.btn-ghost:hover { transform: translateY(-3px); }
+
+/* ================================================================
+   Header / nav
+   ================================================================ */
+.site-header {
+  position: sticky;
+  top: 0;
+  z-index: 50;
+  background: rgba(255, 247, 251, 0.82);
+  backdrop-filter: blur(10px);
+  border-bottom: 2px solid var(--petal);
+}
+.nav {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+  padding-block: .7rem;
+}
+.brand {
+  display: flex;
+  align-items: center;
+  gap: .6rem;
+  font-family: var(--font-display);
+  font-weight: 600;
+  font-size: 1.35rem;
+  color: var(--ink);
+  text-decoration: none;
+}
+.brand .dab { flex: none; }
+.nav-links {
+  display: flex;
+  align-items: center;
+  gap: 1.6rem;
+  list-style: none;
+  margin: 0; padding: 0;
+}
+.nav-links a {
+  text-decoration: none;
+  font-weight: 700;
+  color: var(--ink-soft);
+  transition: color .15s ease;
+}
+.nav-links a:hover { color: var(--berry); }
+.nav-cta { margin-left: .4rem; }
+
+.nav-toggle {
+  display: none;
+  background: var(--white);
+  border: 2px solid var(--petal);
+  border-radius: 14px;
+  width: 46px; height: 46px;
+  cursor: pointer;
+  align-items: center;
+  justify-content: center;
+}
+.nav-toggle span,
+.nav-toggle span::before,
+.nav-toggle span::after {
+  content: "";
+  display: block;
+  width: 22px; height: 2.5px;
+  background: var(--ink);
+  border-radius: 2px;
+  transition: transform .2s ease, opacity .2s ease;
+}
+.nav-toggle span::before { transform: translateY(-7px); }
+.nav-toggle span::after { transform: translateY(4.5px); }
+
+/* ================================================================
+   Hero
+   ================================================================ */
+.hero {
+  position: relative;
+  padding-block: clamp(48px, 8vw, 90px);
+  overflow: hidden;
+}
+.hero-grid {
+  display: grid;
+  grid-template-columns: 1.05fr .95fr;
+  gap: clamp(24px, 4vw, 56px);
+  align-items: center;
+}
+.hero-eyebrow {
+  display: inline-flex;
+  align-items: center;
+  gap: .5em;
+  background: var(--sun);
+  color: var(--ink);
+  font-weight: 800;
+  padding: .35em 1em;
+  border-radius: 100px;
+  font-size: .95rem;
+  transform: rotate(-2deg);
+}
+.hero h1 {
+  font-size: clamp(2.6rem, 7vw, 4.6rem);
+  margin-top: .5rem;
+}
+.hero h1 .line-berry { color: var(--berry); }
+.hero h1 .line-teal { color: var(--teal); }
+.hero p.lead {
+  font-size: clamp(1.05rem, 2vw, 1.3rem);
+  color: var(--ink-soft);
+  max-width: 34ch;
+  margin: 1rem 0 1.8rem;
+}
+.hero-cta {
+  display: flex;
+  flex-wrap: wrap;
+  gap: .9rem;
+}
+.hero-trust {
+  margin-top: 1.6rem;
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  font-weight: 700;
+  color: var(--ink-soft);
+}
+.stars { color: var(--sun); font-size: 1.2rem; letter-spacing: 2px; }
+
+/* Hero illustration */
+.hero-art {
+  position: relative;
+  aspect-ratio: 1 / 1;
+  display: grid;
+  place-items: center;
+}
+.hero-art .blob {
+  position: absolute;
+  inset: 6%;
+  background:
+    radial-gradient(circle at 30% 25%, var(--sun), transparent 45%),
+    radial-gradient(circle at 75% 30%, var(--teal), transparent 48%),
+    radial-gradient(circle at 65% 80%, var(--berry), transparent 50%),
+    radial-gradient(circle at 25% 75%, var(--grape), transparent 52%);
+  filter: blur(6px);
+  border-radius: 46% 54% 58% 42% / 52% 44% 56% 48%;
+  opacity: .85;
+  animation: swirl 18s ease-in-out infinite;
+}
+@keyframes swirl {
+  0%,100% { border-radius: 46% 54% 58% 42% / 52% 44% 56% 48%; }
+  50%     { border-radius: 58% 42% 46% 54% / 44% 56% 48% 52%; }
+}
+.hero-art svg { position: relative; width: 78%; height: auto; }
+
+/* Floating sparkles */
+.sparkle {
+  position: absolute;
+  color: var(--sun);
+  opacity: 0;
+  animation: pop 700ms ease forwards;
+}
+@keyframes pop {
+  0% { opacity: 0; transform: scale(0) rotate(-30deg); }
+  60% { opacity: 1; transform: scale(1.15) rotate(8deg); }
+  100% { opacity: 1; transform: scale(1) rotate(0); }
+}
+
+/* ================================================================
+   Section shells
+   ================================================================ */
+section { position: relative; }
+.section-pad { padding-block: clamp(56px, 9vw, 100px); }
+
+.section-head {
+  max-width: 60ch;
+  margin-bottom: 2.6rem;
+}
+.section-head.center { margin-inline: auto; text-align: center; }
+.kicker {
+  display: inline-block;
+  font-family: var(--font-display);
+  font-weight: 600;
+  color: var(--berry);
+  font-size: 1.05rem;
+  margin-bottom: .3rem;
+}
+.section-head h2 { font-size: clamp(2rem, 4.5vw, 3rem); }
+.section-head p { color: var(--ink-soft); font-size: 1.1rem; }
+
+/* wavy divider between blush + white bands */
+.band { background: var(--white); }
+.band-petal { background: var(--petal); }
+
+/* ================================================================
+   About
+   ================================================================ */
+.about-grid {
+  display: grid;
+  grid-template-columns: .85fr 1.15fr;
+  gap: clamp(28px, 5vw, 64px);
+  align-items: center;
+}
+.about-portrait {
+  position: relative;
+  border-radius: var(--radius-lg);
+  overflow: hidden;
+  aspect-ratio: 4 / 5;
+  background: linear-gradient(145deg, var(--grape), var(--berry));
+  box-shadow: var(--shadow-lift);
+  display: grid;
+  place-items: center;
+  color: rgba(255,255,255,.92);
+  text-align: center;
+  padding: 1.5rem;
+}
+.about-portrait .placeholder-note {
+  font-weight: 700;
+  font-size: .95rem;
+  max-width: 22ch;
+}
+.about-portrait svg { width: 46%; margin-bottom: .8rem; }
+.about-body h2 { font-size: clamp(2rem, 4.5vw, 2.8rem); }
+.about-body p { color: var(--ink-soft); font-size: 1.12rem; }
+.chips {
+  display: flex;
+  flex-wrap: wrap;
+  gap: .6rem;
+  margin-top: 1.4rem;
+}
+.chip {
+  background: var(--white);
+  border: 2px solid var(--petal);
+  border-radius: 100px;
+  padding: .5em 1em;
+  font-weight: 800;
+  font-size: .95rem;
+  color: var(--ink);
+}
+.chip.teal { border-color: var(--teal); color: var(--teal); }
+.chip.berry { border-color: var(--berry); color: var(--berry); }
+.chip.grape { border-color: var(--grape); color: var(--grape); }
+
+/* ================================================================
+   Gallery
+   ================================================================ */
+.gallery-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: clamp(14px, 2vw, 22px);
+}
+.tile {
+  position: relative;
+  border-radius: var(--radius);
+  overflow: hidden;
+  aspect-ratio: 1 / 1;
+  box-shadow: var(--shadow-soft);
+  transition: transform .2s ease, box-shadow .2s ease;
+}
+.tile:hover { transform: translateY(-6px) scale(1.01); box-shadow: var(--shadow-lift); }
+.tile svg, .tile img { width: 100%; height: 100%; object-fit: cover; }
+.tile .caption {
+  position: absolute;
+  left: 0; right: 0; bottom: 0;
+  padding: .8rem 1rem;
+  font-family: var(--font-display);
+  font-weight: 600;
+  color: var(--white);
+  background: linear-gradient(to top, rgba(43,26,61,.72), transparent);
+}
+.gallery-note {
+  margin-top: 1.4rem;
+  text-align: center;
+  color: var(--ink-soft);
+  font-size: .98rem;
+}
+.gallery-note code {
+  background: var(--petal);
+  padding: .15em .5em;
+  border-radius: 8px;
+  font-weight: 700;
+}
+
+/* ================================================================
+   Services / price menu
+   ================================================================ */
+.menu-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: clamp(16px, 2.5vw, 26px);
+}
+.menu-card {
+  background: var(--white);
+  border-radius: var(--radius-lg);
+  padding: clamp(1.4rem, 3vw, 2rem);
+  box-shadow: var(--shadow-soft);
+  border-top: 8px solid var(--teal);
+}
+.menu-card:nth-child(2) { border-top-color: var(--berry); }
+.menu-card:nth-child(3) { border-top-color: var(--sun); }
+.menu-card:nth-child(4) { border-top-color: var(--grape); }
+.menu-card .price-row {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: 1rem;
+  margin-bottom: .3rem;
+}
+.menu-card h3 { font-size: 1.5rem; margin: 0; }
+.menu-card .price {
+  font-family: var(--font-display);
+  font-weight: 600;
+  font-size: 1.5rem;
+  color: var(--berry);
+  white-space: nowrap;
+}
+.menu-card p { color: var(--ink-soft); margin: .4rem 0 0; }
+.menu-card ul {
+  margin: 1rem 0 0;
+  padding: 0;
+  list-style: none;
+}
+.menu-card li {
+  padding-left: 1.8rem;
+  position: relative;
+  margin-bottom: .4rem;
+  font-weight: 600;
+}
+.menu-card li::before {
+  content: "★";
+  position: absolute;
+  left: 0;
+  color: var(--sun);
+}
+.menu-foot {
+  margin-top: 1.6rem;
+  text-align: center;
+  color: var(--ink-soft);
+}
+
+/* ================================================================
+   Booking / contact
+   ================================================================ */
+.book-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: clamp(24px, 4vw, 48px);
+}
+.book-info h2 { font-size: clamp(2rem, 4.5vw, 2.8rem); }
+.book-info p { color: var(--ink-soft); font-size: 1.1rem; }
+.contact-list {
+  list-style: none;
+  padding: 0;
+  margin: 1.6rem 0 0;
+  display: grid;
+  gap: 1rem;
+}
+.contact-list a {
+  display: flex;
+  align-items: center;
+  gap: .8rem;
+  text-decoration: none;
+  font-weight: 800;
+  font-size: 1.1rem;
+  color: var(--ink);
+}
+.contact-list .ico {
+  flex: none;
+  width: 44px; height: 44px;
+  border-radius: 14px;
+  display: grid; place-items: center;
+  background: var(--petal);
+  color: var(--berry);
+}
+.contact-list a:hover { color: var(--berry); }
+
+.book-form {
+  background: var(--white);
+  border-radius: var(--radius-lg);
+  padding: clamp(1.4rem, 3vw, 2.2rem);
+  box-shadow: var(--shadow-lift);
+}
+.book-form label {
+  display: block;
+  font-weight: 800;
+  margin-bottom: .35rem;
+}
+.field { margin-bottom: 1.1rem; }
+.book-form input,
+.book-form textarea,
+.book-form select {
+  width: 100%;
+  font-family: var(--font-body);
+  font-size: 1rem;
+  padding: .8em 1em;
+  border: 2px solid var(--petal);
+  border-radius: 14px;
+  background: var(--cloud);
+  color: var(--ink);
+}
+.book-form input:focus,
+.book-form textarea:focus,
+.book-form select:focus {
+  outline: none;
+  border-color: var(--berry);
+  box-shadow: 0 0 0 4px rgba(229,56,126,.15);
+}
+.book-form textarea { resize: vertical; min-height: 110px; }
+.book-form .btn-primary { width: 100%; justify-content: center; margin-top: .3rem; }
+.form-hint { font-size: .85rem; color: var(--ink-soft); margin-top: .8rem; }
+
+/* ================================================================
+   Footer
+   ================================================================ */
+.site-footer {
+  background: var(--ink);
+  color: rgba(255,255,255,.82);
+  padding-block: clamp(36px, 6vw, 56px);
+}
+.footer-grid {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1.2rem;
+}
+.site-footer .brand { color: var(--white); }
+.footer-socials { display: flex; gap: .8rem; }
+.footer-socials a {
+  width: 44px; height: 44px;
+  border-radius: 50%;
+  display: grid; place-items: center;
+  background: rgba(255,255,255,.1);
+  color: var(--white);
+  text-decoration: none;
+  transition: background .15s ease, transform .15s ease;
+}
+.footer-socials a:hover { background: var(--berry); transform: translateY(-3px); }
+.footer-fine {
+  width: 100%;
+  border-top: 1px solid rgba(255,255,255,.14);
+  padding-top: 1.2rem;
+  font-size: .9rem;
+  color: rgba(255,255,255,.6);
+}
+.footer-fine a { color: rgba(255,255,255,.85); }
+
+/* ================================================================
+   Responsive
+   ================================================================ */
+@media (max-width: 860px) {
+  .nav-links {
+    position: fixed;
+    inset: 64px 0 auto 0;
+    flex-direction: column;
+    align-items: stretch;
+    gap: 0;
+    background: var(--white);
+    padding: .5rem 1.2rem 1.4rem;
+    box-shadow: var(--shadow-soft);
+    transform: translateY(-140%);
+    transition: transform .25s ease;
+  }
+  .nav-links.open { transform: translateY(0); }
+  .nav-links li { border-bottom: 1px solid var(--petal); }
+  .nav-links li:last-child { border-bottom: none; }
+  .nav-links a { display: block; padding: .9rem .2rem; font-size: 1.1rem; }
+  .nav-cta { margin: .6rem 0 0; }
+  .nav-toggle { display: inline-flex; }
+
+  .hero-grid { grid-template-columns: 1fr; text-align: center; }
+  .hero-eyebrow { transform: none; }
+  .hero p.lead, .hero-cta { margin-inline: auto; }
+  .hero-cta { justify-content: center; }
+  .hero-trust { justify-content: center; }
+  .hero-art { max-width: 380px; margin: 1rem auto 0; }
+
+  .about-grid { grid-template-columns: 1fr; }
+  .about-portrait { max-width: 340px; margin-inline: auto; }
+  .gallery-grid { grid-template-columns: repeat(2, 1fr); }
+  .menu-grid { grid-template-columns: 1fr; }
+  .book-grid { grid-template-columns: 1fr; }
+}
+
+@media (max-width: 460px) {
+  .gallery-grid { grid-template-columns: 1fr 1fr; }
+  .hero-cta .btn { width: 100%; justify-content: center; }
+}
+
+/* Respect users who prefer less motion */
+@media (prefers-reduced-motion: reduce) {
+  * { animation: none !important; scroll-behavior: auto; }
+  .btn:hover, .tile:hover { transform: none; }
+}
+
+</style>
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Ccircle cx='16' cy='16' r='14' fill='%23e5387e'/%3E%3Ccircle cx='11' cy='13' r='3' fill='%23fff'/%3E%3Ccircle cx='21' cy='13' r='3' fill='%23ffc23c'/%3E%3Cpath d='M9 20 q7 6 14 0' stroke='%23fff' stroke-width='2.5' fill='none' stroke-linecap='round'/%3E%3C/svg%3E">
+</head>
+<body>
+
+<!-- ============ Header ============ -->
+<header class="site-header">
+  <div class="wrap nav">
+    <a href="#top" class="brand">
+      <svg class="dab" width="34" height="34" viewBox="0 0 34 34" aria-hidden="true">
+        <circle cx="17" cy="17" r="16" fill="#e5387e"/>
+        <circle cx="12" cy="14" r="3.4" fill="#fff"/>
+        <circle cx="22" cy="14" r="3.4" fill="#ffc23c"/>
+        <path d="M9 22 q8 7 16 0" stroke="#fff" stroke-width="2.6" fill="none" stroke-linecap="round"/>
+      </svg>
+      Maliyah&rsquo;s
+    </a>
+
+    <button class="nav-toggle" id="navToggle" aria-label="Open menu" aria-expanded="false" aria-controls="navLinks">
+      <span></span>
+    </button>
+
+    <ul class="nav-links" id="navLinks">
+      <li><a href="#about">About</a></li>
+      <li><a href="#gallery">Gallery</a></li>
+      <li><a href="#services">Prices</a></li>
+      <li><a href="#book">Contact</a></li>
+      <li class="nav-cta"><a class="btn btn-primary" href="#book">Book a party</a></li>
+    </ul>
+  </div>
+</header>
+
+<main id="top">
+
+<!-- ============ Hero ============ -->
+<section class="hero">
+  <div class="wrap hero-grid">
+    <div class="hero-copy">
+      <span class="hero-eyebrow">✨ Face painting for happy little faces</span>
+      <h1>
+        <span class="line-berry">Turn any party</span><br>
+        <span class="line-teal">into a masterpiece</span>
+      </h1>
+      <p class="lead">Bright, skin-safe designs painted with care — from butterflies and tigers to superheroes and sparkly unicorns. Perfect for birthdays, fairs and community events around Brisbane.</p>
+      <div class="hero-cta">
+        <a class="btn btn-primary" href="#book">Book a party</a>
+        <a class="btn btn-ghost" href="#gallery">See the designs</a>
+      </div>
+      <div class="hero-trust">
+        <span class="stars" aria-hidden="true">★★★★★</span>
+        <span>Loved by kids &amp; parents alike</span>
+      </div>
+    </div>
+
+    <div class="hero-art" id="heroArt" aria-hidden="true">
+      <div class="blob"></div>
+      <!-- Signature butterfly -->
+      <svg viewBox="0 0 240 240" role="img">
+        <defs>
+          <linearGradient id="wingA" x1="0" y1="0" x2="1" y2="1">
+            <stop offset="0" stop-color="#ffc23c"/>
+            <stop offset="1" stop-color="#ff6b4a"/>
+          </linearGradient>
+          <linearGradient id="wingB" x1="0" y1="0" x2="1" y2="1">
+            <stop offset="0" stop-color="#14b8b0"/>
+            <stop offset="1" stop-color="#7c4dff"/>
+          </linearGradient>
+        </defs>
+        <!-- left wings -->
+        <path d="M120 120 C70 60 20 60 30 110 C36 140 90 128 120 120Z" fill="url(#wingA)"/>
+        <path d="M120 120 C74 168 26 186 40 140 C52 108 96 118 120 120Z" fill="url(#wingB)"/>
+        <!-- right wings -->
+        <path d="M120 120 C170 60 220 60 210 110 C204 140 150 128 120 120Z" fill="url(#wingA)"/>
+        <path d="M120 120 C166 168 214 186 200 140 C188 108 144 118 120 120Z" fill="url(#wingB)"/>
+        <!-- wing dots -->
+        <circle cx="66" cy="96" r="8" fill="#fff" opacity=".85"/>
+        <circle cx="174" cy="96" r="8" fill="#fff" opacity=".85"/>
+        <circle cx="70" cy="150" r="6" fill="#fff" opacity=".8"/>
+        <circle cx="170" cy="150" r="6" fill="#fff" opacity=".8"/>
+        <!-- body -->
+        <rect x="115" y="86" width="10" height="70" rx="5" fill="#2b1a3d"/>
+        <circle cx="120" cy="84" r="9" fill="#2b1a3d"/>
+        <path d="M120 78 C112 62 104 58 100 52" stroke="#2b1a3d" stroke-width="3" fill="none" stroke-linecap="round"/>
+        <path d="M120 78 C128 62 136 58 140 52" stroke="#2b1a3d" stroke-width="3" fill="none" stroke-linecap="round"/>
+        <circle cx="99" cy="51" r="4" fill="#e5387e"/>
+        <circle cx="141" cy="51" r="4" fill="#e5387e"/>
+      </svg>
+    </div>
+  </div>
+</section>
+
+<!-- ============ About ============ -->
+<section id="about" class="band section-pad">
+  <div class="wrap about-grid">
+    <div class="about-portrait">
+      <!-- Replace this whole block with: <img src="images/maliyah.jpg" alt="Maliyah face painting a child"> -->
+      <svg viewBox="0 0 120 120" aria-hidden="true">
+        <circle cx="60" cy="46" r="26" fill="rgba(255,255,255,.9)"/>
+        <path d="M26 108 a34 34 0 0 1 68 0Z" fill="rgba(255,255,255,.9)"/>
+        <circle cx="50" cy="44" r="4" fill="#2b1a3d"/>
+        <circle cx="70" cy="44" r="4" fill="#2b1a3d"/>
+        <path d="M50 56 q10 8 20 0" stroke="#2b1a3d" stroke-width="3" fill="none" stroke-linecap="round"/>
+        <path d="M78 30 l3 6 6 3 -6 3 -3 6 -3 -6 -6 -3 6 -3Z" fill="#ffc23c"/>
+      </svg>
+      <p class="placeholder-note">Add a friendly photo of Maliyah here — save it as <br><code>images/maliyah.jpg</code></p>
+    </div>
+
+    <div class="about-body">
+      <span class="kicker">Hi, I&rsquo;m Maliyah</span>
+      <h2>The friendly face behind the brush</h2>
+      <p>I&rsquo;m a face painter who lives to see a child light up when they catch their reflection for the first time. Every design is painted with gentle, professional-grade paints that are kind to sensitive skin and wash off easily at bath time.</p>
+      <p>Whether it&rsquo;s a backyard birthday, a school fete or a big community festival, I bring the colours, the sparkle and a whole lot of patience for the wriggly ones.</p>
+      <div class="chips">
+        <span class="chip berry">Skin-safe paints</span>
+        <span class="chip teal">Fully hygienic kit</span>
+        <span class="chip grape">Kids &amp; adults</span>
+        <span class="chip">Fast queues at events</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ Gallery ============ -->
+<section id="gallery" class="band-petal section-pad">
+  <div class="wrap">
+    <div class="section-head center">
+      <span class="kicker">The designs</span>
+      <h2>A peek at what I paint</h2>
+      <p>Classics that never go out of style — and I love a custom request too.</p>
+    </div>
+
+    <div class="gallery-grid" id="galleryGrid">
+
+      <!-- Butterfly -->
+      <figure class="tile">
+        <svg viewBox="0 0 200 200" role="img" aria-label="Butterfly face paint design">
+          <rect width="200" height="200" fill="#ffe3ef"/>
+          <path d="M100 100 C60 55 20 60 34 100 C42 122 80 108 100 100Z" fill="#e5387e"/>
+          <path d="M100 100 C60 145 22 160 40 122 C50 104 82 96 100 100Z" fill="#ff6b4a"/>
+          <path d="M100 100 C140 55 180 60 166 100 C158 122 120 108 100 100Z" fill="#e5387e"/>
+          <path d="M100 100 C140 145 178 160 160 122 C150 104 118 96 100 100Z" fill="#ff6b4a"/>
+          <circle cx="56" cy="86" r="6" fill="#fff"/><circle cx="144" cy="86" r="6" fill="#fff"/>
+          <rect x="96" y="72" width="8" height="58" rx="4" fill="#2b1a3d"/>
+          <circle cx="100" cy="70" r="7" fill="#2b1a3d"/>
+        </svg>
+        <figcaption class="caption">Butterfly</figcaption>
+      </figure>
+
+      <!-- Tiger -->
+      <figure class="tile">
+        <svg viewBox="0 0 200 200" role="img" aria-label="Tiger face paint design">
+          <rect width="200" height="200" fill="#fff0dc"/>
+          <ellipse cx="100" cy="112" rx="60" ry="52" fill="#ff9d2e"/>
+          <path d="M100 62 l-12 22 h24Z" fill="#ff9d2e"/>
+          <g stroke="#2b1a3d" stroke-width="6" stroke-linecap="round">
+            <path d="M70 78 l8 16"/><path d="M100 72 v18"/><path d="M130 78 l-8 16"/>
+            <path d="M46 112 h18"/><path d="M136 112 h18"/>
+          </g>
+          <circle cx="80" cy="104" r="6" fill="#2b1a3d"/>
+          <circle cx="120" cy="104" r="6" fill="#2b1a3d"/>
+          <path d="M92 124 h16 l-8 8Z" fill="#e5387e"/>
+          <path d="M100 132 v10" stroke="#2b1a3d" stroke-width="4" stroke-linecap="round"/>
+          <g stroke="#2b1a3d" stroke-width="2.5" stroke-linecap="round">
+            <path d="M108 138 h34"/><path d="M108 144 h30"/>
+            <path d="M92 138 h-34"/><path d="M92 144 h-30"/>
+          </g>
+        </svg>
+        <figcaption class="caption">Tiger</figcaption>
+      </figure>
+
+      <!-- Rainbow -->
+      <figure class="tile">
+        <svg viewBox="0 0 200 200" role="img" aria-label="Rainbow face paint design">
+          <rect width="200" height="200" fill="#e4f7f6"/>
+          <g fill="none" stroke-width="11" stroke-linecap="round">
+            <path d="M42 150 a58 58 0 0 1 116 0" stroke="#e5387e"/>
+            <path d="M56 150 a44 44 0 0 1 88 0" stroke="#ffc23c"/>
+            <path d="M70 150 a30 30 0 0 1 60 0" stroke="#14b8b0"/>
+          </g>
+          <circle cx="46" cy="150" r="14" fill="#fff"/>
+          <circle cx="154" cy="150" r="14" fill="#fff"/>
+          <path d="M150 58 l4 9 9 4 -9 4 -4 9 -4 -9 -9 -4 9 -4Z" fill="#7c4dff"/>
+          <path d="M40 66 l3 6 6 3 -6 3 -3 6 -3 -6 -6 -3 6 -3Z" fill="#ff6b4a"/>
+        </svg>
+        <figcaption class="caption">Rainbow &amp; stars</figcaption>
+      </figure>
+
+      <!-- Superhero mask -->
+      <figure class="tile">
+        <svg viewBox="0 0 200 200" role="img" aria-label="Superhero mask face paint design">
+          <rect width="200" height="200" fill="#e7ecff"/>
+          <path d="M40 84 q60 -34 120 0 q-4 34 -20 46 q-40 -20 -80 0 q-16 -12 -20 -46Z" fill="#7c4dff"/>
+          <path d="M64 96 q16 -12 32 0 q-4 14 -16 16 q-12 -2 -16 -16Z" fill="#fff"/>
+          <path d="M136 96 q-16 -12 -32 0 q4 14 16 16 q12 -2 16 -16Z" fill="#fff"/>
+          <path d="M100 120 l6 22 -6 -6 -6 6Z" fill="#ffc23c"/>
+          <path d="M52 78 l6 8 M148 78 l-6 8" stroke="#ffc23c" stroke-width="5" stroke-linecap="round"/>
+        </svg>
+        <figcaption class="caption">Superhero</figcaption>
+      </figure>
+
+      <!-- Flower vine -->
+      <figure class="tile">
+        <svg viewBox="0 0 200 200" role="img" aria-label="Flower vine face paint design">
+          <rect width="200" height="200" fill="#fdeaf4"/>
+          <path d="M40 160 C70 120 60 80 110 60" stroke="#14b8b0" stroke-width="6" fill="none" stroke-linecap="round"/>
+          <g>
+            <circle cx="110" cy="58" r="10" fill="#e5387e"/>
+            <circle cx="98" cy="46" r="9" fill="#ff6b4a"/>
+            <circle cx="122" cy="46" r="9" fill="#ffc23c"/>
+            <circle cx="110" cy="40" r="9" fill="#7c4dff"/>
+            <circle cx="110" cy="52" r="6" fill="#fff"/>
+          </g>
+          <circle cx="74" cy="104" r="8" fill="#e5387e"/>
+          <circle cx="66" cy="96" r="6" fill="#ffc23c"/>
+          <path d="M96 120 q-14 6 -22 -4" stroke="#14b8b0" stroke-width="5" fill="none" stroke-linecap="round"/>
+        </svg>
+        <figcaption class="caption">Flowers &amp; vines</figcaption>
+      </figure>
+
+      <!-- Unicorn -->
+      <figure class="tile">
+        <svg viewBox="0 0 200 200" role="img" aria-label="Unicorn face paint design">
+          <rect width="200" height="200" fill="#f0e9ff"/>
+          <path d="M100 44 l10 44 h-20Z" fill="#ffc23c"/>
+          <path d="M100 44 l10 44 h-20Z" fill="none" stroke="#fff" stroke-width="3"/>
+          <g fill="none" stroke-width="9" stroke-linecap="round">
+            <path d="M70 92 q-24 22 -18 52" stroke="#e5387e"/>
+            <path d="M84 92 q-16 24 -12 54" stroke="#7c4dff"/>
+            <path d="M116 92 q16 24 12 54" stroke="#14b8b0"/>
+            <path d="M130 92 q24 22 18 52" stroke="#ff6b4a"/>
+          </g>
+          <circle cx="100" cy="98" r="16" fill="#fff"/>
+          <circle cx="100" cy="98" r="4" fill="#2b1a3d"/>
+          <path d="M60 70 l3 7 7 3 -7 3 -3 7 -3 -7 -7 -3 7 -3Z" fill="#ffc23c"/>
+        </svg>
+        <figcaption class="caption">Unicorn</figcaption>
+      </figure>
+
+    </div>
+
+    <p class="gallery-note">Swap any tile for a real photo: drop a square image into the <code>images/</code> folder and follow the note in <code>index.html</code>.</p>
+  </div>
+</section>
+
+<!-- ============ Services / prices ============ -->
+<section id="services" class="band section-pad">
+  <div class="wrap">
+    <div class="section-head center">
+      <span class="kicker">Prices</span>
+      <h2>Simple packages, no surprises</h2>
+      <p>Every booking includes skin-safe paints, quality brushes and a fresh, hygienic setup. Prices below are a starting point — edit them to match your rates.</p>
+    </div>
+
+    <div class="menu-grid">
+      <article class="menu-card">
+        <div class="price-row">
+          <h3>Party Package</h3>
+          <span class="price">from $180</span>
+        </div>
+        <p>Up to 2 hours of painting at your party.</p>
+        <ul>
+          <li>Roughly 12&ndash;15 faces per hour</li>
+          <li>Full design menu to choose from</li>
+          <li>Setup and pack-down included</li>
+        </ul>
+      </article>
+
+      <article class="menu-card">
+        <div class="price-row">
+          <h3>Extra Hour</h3>
+          <span class="price">from $80</span>
+        </div>
+        <p>Add more time so no one misses out.</p>
+        <ul>
+          <li>Great for bigger guest lists</li>
+          <li>Keep the queue moving</li>
+          <li>Book on the day if needed</li>
+        </ul>
+      </article>
+
+      <article class="menu-card">
+        <div class="price-row">
+          <h3>Fairs &amp; Festivals</h3>
+          <span class="price">POA</span>
+        </div>
+        <p>Markets, fetes and community events.</p>
+        <ul>
+          <li>Half or full-day rates</li>
+          <li>Fast, crowd-friendly designs</li>
+          <li>Multiple painters on request</li>
+        </ul>
+      </article>
+
+      <article class="menu-card">
+        <div class="price-row">
+          <h3>Sparkle Add-ons</h3>
+          <span class="price">from $5</span>
+        </div>
+        <p>Little extras that steal the show.</p>
+        <ul>
+          <li>Glitter tattoos &amp; gems</li>
+          <li>Cosmetic-grade glitter</li>
+          <li>Matching arm &amp; hand art</li>
+        </ul>
+      </article>
+    </div>
+
+    <p class="menu-foot">Travelling outside Brisbane? Get in touch for a quick quote — happy to come to you.</p>
+  </div>
+</section>
+
+<!-- ============ Booking / contact ============ -->
+<section id="book" class="band-petal section-pad">
+  <div class="wrap book-grid">
+    <div class="book-info">
+      <span class="kicker">Let&rsquo;s chat</span>
+      <h2>Book a splash of colour</h2>
+      <p>Tell me your date, location and how many little faces you&rsquo;re expecting, and I&rsquo;ll get straight back to you with availability.</p>
+
+      <ul class="contact-list">
+        <li>
+          <a href="mailto:hello@maliyahsfacepainting.com.au">
+            <span class="ico" aria-hidden="true">
+              <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="m3 7 9 6 9-6"/></svg>
+            </span>
+            hello@maliyahsfacepainting.com.au
+          </a>
+        </li>
+        <li>
+          <a href="tel:+61400000000">
+            <span class="ico" aria-hidden="true">
+              <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 4h4l2 5-3 2a12 12 0 0 0 5 5l2-3 5 2v4a2 2 0 0 1-2 2A16 16 0 0 1 3 6a2 2 0 0 1 2-2Z"/></svg>
+            </span>
+            0400 000 000
+          </a>
+        </li>
+        <li>
+          <a href="https://instagram.com/" target="_blank" rel="noopener">
+            <span class="ico" aria-hidden="true">
+              <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="18" height="18" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r="1"/></svg>
+            </span>
+            @maliyahsfacepainting
+          </a>
+        </li>
+      </ul>
+    </div>
+
+    <!-- Contact form.
+         GitHub Pages can't send email on its own. To make this form work,
+         create a free Formspree form and paste your form ID into the action below. -->
+    <form class="book-form" action="https://formspree.io/f/YOUR_FORM_ID" method="POST">
+      <div class="field">
+        <label for="name">Your name</label>
+        <input id="name" name="name" type="text" placeholder="Jane Smith" required>
+      </div>
+      <div class="field">
+        <label for="email">Email</label>
+        <input id="email" name="email" type="email" placeholder="jane@email.com" required>
+      </div>
+      <div class="field">
+        <label for="event">Event type</label>
+        <select id="event" name="event">
+          <option>Birthday party</option>
+          <option>School or community event</option>
+          <option>Fair or festival</option>
+          <option>Something else</option>
+        </select>
+      </div>
+      <div class="field">
+        <label for="message">Tell me about your event</label>
+        <textarea id="message" name="message" placeholder="Date, suburb, and roughly how many kids…"></textarea>
+      </div>
+      <button class="btn btn-primary" type="submit">Send my enquiry</button>
+      <p class="form-hint">Prefer email? Reach me any time at hello@maliyahsfacepainting.com.au</p>
+    </form>
+  </div>
+</section>
+
+</main>
+
+<!-- ============ Footer ============ -->
+<footer class="site-footer">
+  <div class="wrap footer-grid">
+    <a href="#top" class="brand">
+      <svg class="dab" width="30" height="30" viewBox="0 0 34 34" aria-hidden="true">
+        <circle cx="17" cy="17" r="16" fill="#e5387e"/>
+        <circle cx="12" cy="14" r="3.4" fill="#fff"/>
+        <circle cx="22" cy="14" r="3.4" fill="#ffc23c"/>
+        <path d="M9 22 q8 7 16 0" stroke="#fff" stroke-width="2.6" fill="none" stroke-linecap="round"/>
+      </svg>
+      Maliyah&rsquo;s Face Painting
+    </a>
+    <div class="footer-socials">
+      <a href="https://instagram.com/" target="_blank" rel="noopener" aria-label="Instagram">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="18" height="18" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r="1"/></svg>
+      </a>
+      <a href="https://facebook.com/" target="_blank" rel="noopener" aria-label="Facebook">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor"><path d="M14 9h3V6h-3c-2 0-3 1-3 3v2H8v3h3v6h3v-6h2.5l.5-3H14v-1.5c0-.6.3-.5.7-.5Z"/></svg>
+      </a>
+      <a href="mailto:hello@maliyahsfacepainting.com.au" aria-label="Email">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="m3 7 9 6 9-6"/></svg>
+      </a>
+    </div>
+    <p class="footer-fine">
+      &copy; <span id="year">2026</span> Maliyah&rsquo;s Face Painting · Brisbane, QLD · Made with love and a lot of glitter.
+    </p>
+  </div>
+</footer>
+
+<script>
+/* Maliyah's Face Painting — small bits of interactivity */
+
+// ---- Mobile menu ----
+const toggle = document.getElementById('navToggle');
+const links = document.getElementById('navLinks');
+
+if (toggle && links) {
+  toggle.addEventListener('click', () => {
+    const open = links.classList.toggle('open');
+    toggle.setAttribute('aria-expanded', open ? 'true' : 'false');
+    toggle.setAttribute('aria-label', open ? 'Close menu' : 'Open menu');
+  });
+
+  // Close the menu after tapping a link
+  links.querySelectorAll('a').forEach(a =>
+    a.addEventListener('click', () => {
+      links.classList.remove('open');
+      toggle.setAttribute('aria-expanded', 'false');
+      toggle.setAttribute('aria-label', 'Open menu');
+    })
+  );
+}
+
+// ---- Current year in footer ----
+const yearEl = document.getElementById('year');
+if (yearEl) yearEl.textContent = new Date().getFullYear();
+
+// ---- One-off sparkle entrance around the hero art ----
+const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+const heroArt = document.getElementById('heroArt');
+
+if (heroArt && !reduceMotion) {
+  const spots = [
+    { top: '6%',  left: '12%' }, { top: '14%', left: '82%' },
+    { top: '78%', left: '8%'  }, { top: '70%', left: '88%' },
+    { top: '40%', left: '2%'  }, { top: '30%', left: '96%' }
+  ];
+  spots.forEach((pos, i) => {
+    const s = document.createElement('div');
+    s.className = 'sparkle';
+    Object.assign(s.style, pos);
+    s.style.animationDelay = (300 + i * 160) + 'ms';
+    s.innerHTML = '<svg width="26" height="26" viewBox="0 0 24 24" fill="currentColor">' +
+      '<path d="M12 2l2.2 6.5L21 11l-6.8 2.5L12 20l-2.2-6.5L3 11l6.8-2.5z"/></svg>';
+    heroArt.appendChild(s);
+  });
+}
+
+</script>
+</body>
+</html>
